@@ -1,7 +1,12 @@
-const express = require('express');
 const fs = require('fs');
+const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
+
+// 1) MIDDLEWARES
+
+app.use(morgan('dev'));
 app.use(express.json());
 
 // global route handler middleware are before route handlers
@@ -18,6 +23,8 @@ app.use((req, res, next) => {
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
+
+// 1) ROUTE HANDLERS
 
 const getAllTours = (req, res) => {
   res.status(200).json({
@@ -99,6 +106,8 @@ const deleteTour = (req, res) => {
   });
 };
 
+// 3) ROUTES
+
 app
   .route('/api/v1/tours')
   .get(getAllTours)
@@ -109,6 +118,8 @@ app
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
+
+// 4) START SERVER
 
 const port = 8000;
 app.listen(port, () => {
