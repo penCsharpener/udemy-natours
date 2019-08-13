@@ -40,6 +40,62 @@
 					"response": []
 				},
 				{
+					"name": "patch tours/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"duration\": 10\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}tours/4",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete tours/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"duration\": 10\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}tours/4",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "post tours",
 					"request": {
 						"method": "POST",
@@ -68,7 +124,87 @@
 		},
 		{
 			"name": "users",
-			"item": []
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users",
+							"host": [
+								"{{na_url}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch user/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users",
+							"host": [
+								"{{na_url}}users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "temp",
@@ -132,7 +268,7 @@
 	],
 	"variable": [
 		{
-			"id": "9c4bdb10-0782-465f-a1e8-ffc9a2dfb143",
+			"id": "70fd331c-fd4f-422c-8926-15c345f116ef",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
