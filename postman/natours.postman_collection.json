@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "d69a7e30-8015-49ce-9c1c-3bd700c2142c",
+		"name": "natours",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tours",
+			"item": [
+				{
+					"name": "get tours",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}tours",
+							"host": [
+								"{{na_url}}tours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tours/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}tours/4",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post tours",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test Tour\",\n\t\"duration\": 10,\n\t\"difficulty\": \"easy\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}tours",
+							"host": [
+								"{{na_url}}tours"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": []
+		},
+		{
+			"name": "temp",
+			"item": [
+				{
+					"name": "S6L4-test-server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S6L4-post-to-endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000"
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "83aae113-4041-4c84-8bf5-a7410b9c9135",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7f13ba80-5511-4fa6-857d-d2d903711b79",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "9c4bdb10-0782-465f-a1e8-ffc9a2dfb143",
+			"key": "na_url",
+			"value": "http://localhost:8000/api/v1/",
+			"type": "string"
+		}
+	]
+}
