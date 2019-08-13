@@ -94,6 +94,17 @@ app.post('/api/v1/tours', createTour);
 app.patch('/api/v1/tours/:id', updateTour);
 app.delete('/api/v1/tours/:id', deleteTour);
 
+app
+  .route('/api/v1/tours')
+  .get(getAllTours)
+  .post(createTour);
+
+app
+  .route('/api/v1/tours/:id')
+  .get(getTour)
+  .patch(updateTour)
+  .delete(deleteTour);
+
 const port = 8000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
