@@ -10,6 +10,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
 
 // global route handler middleware are before route handlers
 app.use((req, res, next) => {
@@ -22,12 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// 1) ROUTE HANDLERS
-
-// 3) ROUTES
-
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-// 4) START SERVER
 
 module.exports = app;
