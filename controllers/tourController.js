@@ -13,7 +13,7 @@ exports.getAllTours = async (req, res) => {
       requestedAt: req.requestTime,
       results: tours.length,
       data: {
-        tours: tours
+        tours
       }
     });
   } catch (err) {
