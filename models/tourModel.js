@@ -55,7 +55,7 @@ const tourSchema = new mongoose.Schema(
         },
         message: 'Discount price ({VALUE}) should be below regular price'
       }
-    }
+    },
     summary: {
       type: String,
       required: [true, 'A tour must have a summary'],
