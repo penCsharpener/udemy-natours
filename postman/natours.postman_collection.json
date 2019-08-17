@@ -12,7 +12,13 @@
 					"name": "get tours",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{natours_jwt}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{na_url}}tours?",
 							"host": [
@@ -316,6 +322,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "post login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.variables.set('natours_jwt', data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"password1234\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/login",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -381,9 +428,15 @@
 	],
 	"variable": [
 		{
-			"id": "ab766491-395e-4fdf-b11e-40c3384f9692",
+			"id": "b757d125-45ed-467d-9eb6-444c383f829e",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
+			"type": "string"
+		},
+		{
+			"id": "3652f447-c30a-452a-9371-d264ac3382c1",
+			"key": "natours_jwt",
+			"value": "",
 			"type": "string"
 		}
 	]
