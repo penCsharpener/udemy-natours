@@ -13,6 +13,11 @@ const sendEmail = async options => {
   });
   */
   /* sign up to mailtrap.io */
+  //   console.log(process.env.EMAIL_HOST);
+  //   console.log(process.env.EMAIL_PORT);
+  //   console.log(process.env.EMAIL_USERNAME);
+  //   console.log(process.env.EMAIL_PASSWORD);
+
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
