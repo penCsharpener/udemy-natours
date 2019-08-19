@@ -11,14 +11,18 @@
 				{
 					"name": "get tours",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{natours_jwt}}",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{na_url}}tours?",
 							"host": [
@@ -331,8 +335,7 @@
 							"script": {
 								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
 								"exec": [
-									"var data = pm.response.json();",
-									"pm.variables.set('natours_jwt', data.token);"
+									"pm.environment.set(\"token\", pm.response.json().token);"
 								],
 								"type": "text/javascript"
 							}
@@ -350,7 +353,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"password1234\"\n}"
+							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"newpassword1234\"\n}"
 						},
 						"url": {
 							"raw": "{{na_url}}users/login",
@@ -359,6 +362,87 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post forgot Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"hello@jonas.io\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/forgotPassword",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newpassword1234\",\n\t\"passwordConfirm\": \"newpassword1234\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/resetPassword/9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"resetPassword",
+								"9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6"
 							]
 						}
 					},
@@ -428,13 +512,13 @@
 	],
 	"variable": [
 		{
-			"id": "b757d125-45ed-467d-9eb6-444c383f829e",
+			"id": "75021690-60d9-4d5f-98f0-cb96e7ba9a36",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "3652f447-c30a-452a-9371-d264ac3382c1",
+			"id": "0a99c349-a117-4900-9671-817f85318301",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
