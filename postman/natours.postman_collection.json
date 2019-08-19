@@ -6,6 +6,400 @@
 	},
 	"item": [
 		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "post login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"newpassword12345\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/login",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post forgot Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"hello@jonas.io\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/forgotPassword",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch updateMyPassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"passwordCurrent\": \"newpassword12345\",\n\t\"password\": \"newpassword12345\",\n\t\"passwordConfirm\": \"newpassword12345\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/updateMyPassword",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"updateMyPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newpassword1234\",\n\t\"passwordConfirm\": \"newpassword1234\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/resetPassword/9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"resetPassword",
+								"9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post signup user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"jonas\",\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"password1234\",\n\t\"passwordConfirm\": \"password1234\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/signup",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users",
+							"host": [
+								"{{na_url}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch user/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users/4",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}users",
+							"host": [
+								"{{na_url}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch updateMe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"/*",
+									"{",
+									"    \"password\": \"password12345\",",
+									"\t\"name\": \"Jonas Schmedtmann\",",
+									"\t\"role\": \"admin\"",
+									"}",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jonas Schmedtmann\",\n\t\"role\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/updateMe",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"updateMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete deleteMe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{na_url}}users/deleteMe",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"deleteMe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "tours",
 			"item": [
 				{
@@ -218,239 +612,6 @@
 			]
 		},
 		{
-			"name": "users",
-			"item": [
-				{
-					"name": "get users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{na_url}}users",
-							"host": [
-								"{{na_url}}users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get user/:id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{na_url}}users/4",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "patch user/:id",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "{{na_url}}users/4",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete user/:id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{na_url}}users/4",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post user",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{na_url}}users",
-							"host": [
-								"{{na_url}}users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post signup user",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"jonas\",\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"password1234\",\n\t\"passwordConfirm\": \"password1234\"\n}"
-						},
-						"url": {
-							"raw": "{{na_url}}users/signup",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post login user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
-								"exec": [
-									"pm.environment.set(\"token\", pm.response.json().token);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"newpassword1234\"\n}"
-						},
-						"url": {
-							"raw": "{{na_url}}users/login",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post forgot Password",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"hello@jonas.io\"\n}"
-						},
-						"url": {
-							"raw": "{{na_url}}users/forgotPassword",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"forgotPassword"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "post reset Password",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
-								"exec": [
-									"pm.environment.set(\"token\", pm.response.json().token);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"password\": \"newpassword1234\",\n\t\"passwordConfirm\": \"newpassword1234\"\n}"
-						},
-						"url": {
-							"raw": "{{na_url}}users/resetPassword/9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6",
-							"host": [
-								"{{na_url}}users"
-							],
-							"path": [
-								"resetPassword",
-								"9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "temp",
 			"item": [
 				{
@@ -512,13 +673,13 @@
 	],
 	"variable": [
 		{
-			"id": "75021690-60d9-4d5f-98f0-cb96e7ba9a36",
+			"id": "d7010552-2547-45aa-8a7d-a4d2ea732acb",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "0a99c349-a117-4900-9671-817f85318301",
+			"id": "e7007656-ad46-4f51-8b3d-9442f4953c69",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
