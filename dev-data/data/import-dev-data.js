@@ -19,7 +19,7 @@ const readFilePro = file => {
 // IMPORT DATA INTO DB
 const importData = async () => {
   try {
-    const dataPath = `${__dirname}/tours-simple.json`;
+    const dataPath = `${__dirname}/tours.json`;
     console.log('importing file: ' + dataPath);
 
     const data = await readFilePro(dataPath);
