@@ -664,6 +664,69 @@
 			"name": "reviews",
 			"item": [
 				{
+					"name": "nested in tours",
+					"item": [
+						{
+							"name": "create review",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"rating\": 5,\n\t\"review\": \"Best tour in the world!\"\n}"
+								},
+								"url": {
+									"raw": "{{na_url}}tours/5c88fa8cf4afda39709c2955/reviews",
+									"host": [
+										"{{na_url}}tours"
+									],
+									"path": [
+										"5c88fa8cf4afda39709c2955",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get reviews",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{na_url}}tours/5c88fa8cf4afda39709c2955/reviews",
+									"host": [
+										"{{na_url}}tours"
+									],
+									"path": [
+										"5c88fa8cf4afda39709c2955",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "get reviews",
 					"request": {
 						"method": "GET",
@@ -711,45 +774,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "create review nested",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"rating\": 5,\n\t\"review\": \"Best tour in the world!\"\n}"
-						},
-						"url": {
-							"raw": "{{na_url}}tours/5c88fa8cf4afda39709c2955/reviews",
-							"host": [
-								"{{na_url}}tours"
-							],
-							"path": [
-								"5c88fa8cf4afda39709c2955",
-								"reviews"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		}
@@ -778,13 +802,13 @@
 	],
 	"variable": [
 		{
-			"id": "df0db497-1ad3-43fc-bffe-15f705b6980d",
+			"id": "f1322add-f93b-49ba-b606-1b89a224f861",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "6de8b41f-d9fb-47fa-88a2-02736e690c8b",
+			"id": "59cc2106-614f-4852-8e2d-87c3a59b4841",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
