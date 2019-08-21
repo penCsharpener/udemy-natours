@@ -230,9 +230,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{na_url}}users",
+							"raw": "{{na_url}}users?",
 							"host": [
 								"{{na_url}}users"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "admin",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -242,14 +249,21 @@
 					"name": "get user/:id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{na_url}}users/4",
+							"raw": "{{na_url}}users/5c8a1d5b0190b214360dc057",
 							"host": [
 								"{{na_url}}users"
 							],
 							"path": [
-								"4"
+								"5c8a1d5b0190b214360dc057"
 							]
 						}
 					},
@@ -259,14 +273,25 @@
 					"name": "patch user/:id",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Administrator\"\n}"
+						},
 						"url": {
-							"raw": "{{na_url}}users/4",
+							"raw": "{{na_url}}users/5c8a1d5b0190b214360dc057",
 							"host": [
 								"{{na_url}}users"
 							],
 							"path": [
-								"4"
+								"5c8a1d5b0190b214360dc057"
 							]
 						}
 					},
@@ -732,9 +757,32 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{na_url}}reviews",
+							"raw": "{{na_url}}reviews?rating=4",
 							"host": [
 								"{{na_url}}reviews"
+							],
+							"query": [
+								{
+									"key": "rating",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get review",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}reviews/5c8a34ed14eb5c17645c9108",
+							"host": [
+								"{{na_url}}reviews"
+							],
+							"path": [
+								"5c8a34ed14eb5c17645c9108"
 							]
 						}
 					},
@@ -770,6 +818,44 @@
 							"raw": "{{na_url}}reviews",
 							"host": [
 								"{{na_url}}reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 4\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}reviews/5c8a34ed14eb5c17645c9108",
+							"host": [
+								"{{na_url}}reviews"
+							],
+							"path": [
+								"5c8a34ed14eb5c17645c9108"
 							]
 						}
 					},
@@ -840,13 +926,13 @@
 	],
 	"variable": [
 		{
-			"id": "6069074a-26ad-4e1c-a363-61fe6e587ca8",
+			"id": "0d00446e-1579-4cdd-b9f5-52d43a303fd3",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "8c9cade7-eff6-4550-8680-9b4c7fbc17a8",
+			"id": "8e5d8966-2e9c-48b7-97d8-c255d122f127",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
