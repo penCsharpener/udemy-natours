@@ -385,6 +385,65 @@
 					"response": []
 				},
 				{
+					"name": "get Me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee3b4964-4f4c-44d3-8020-c294135b5c45",
+								"exec": [
+									"/*",
+									"{",
+									"    \"password\": \"password12345\",",
+									"\t\"name\": \"Jonas Schmedtmann\",",
+									"\t\"role\": \"admin\"",
+									"}",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jonas Schmedtmann\",\n\t\"role\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}users/me",
+							"host": [
+								"{{na_url}}users"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete deleteMe",
 					"event": [
 						{
@@ -926,13 +985,13 @@
 	],
 	"variable": [
 		{
-			"id": "0d00446e-1579-4cdd-b9f5-52d43a303fd3",
+			"id": "a5a17959-6990-497f-8c58-1ea26d3c4d43",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "8e5d8966-2e9c-48b7-97d8-c255d122f127",
+			"id": "93ccc17c-6f07-441e-a537-3905a9cc20ea",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
