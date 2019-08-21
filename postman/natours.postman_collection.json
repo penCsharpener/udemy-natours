@@ -774,6 +774,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}reviews/5d5d1b282a8325384c03a9b1",
+							"host": [
+								"{{na_url}}reviews"
+							],
+							"path": [
+								"5d5d1b282a8325384c03a9b1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -802,13 +840,13 @@
 	],
 	"variable": [
 		{
-			"id": "f1322add-f93b-49ba-b606-1b89a224f861",
+			"id": "6069074a-26ad-4e1c-a363-61fe6e587ca8",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "59cc2106-614f-4852-8e2d-87c3a59b4841",
+			"id": "8c9cade7-eff6-4550-8680-9b4c7fbc17a8",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
