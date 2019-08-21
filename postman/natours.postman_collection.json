@@ -34,7 +34,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"newpassword12345\"\n}"
+							"raw": "{\n\t\"email\": \"admin@natours.io\",\n\t\"password\": {{pwd}}\n}"
 						},
 						"url": {
 							"raw": "{{na_url}}users/login",
@@ -124,7 +124,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"passwordCurrent\": \"newpassword12345\",\n\t\"password\": \"newpassword12345\",\n\t\"passwordConfirm\": \"newpassword12345\"\n}"
+							"raw": "{\n\t\"passwordCurrent\": {{pwd}},\n\t\"password\": {{newpwd}},\n\t\"passwordConfirm\": {{newpwd}}\n}"
 						},
 						"url": {
 							"raw": "{{na_url}}users/updateMyPassword",
@@ -164,7 +164,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"password\": \"newpassword1234\",\n\t\"passwordConfirm\": \"newpassword1234\"\n}"
+							"raw": "{\n\t\"password\": {{newpwd}},\n\t\"passwordConfirm\": {{newpwd}}\n}"
 						},
 						"url": {
 							"raw": "{{na_url}}users/resetPassword/9996f4c64d38e9ee7574350b213119daebc02fc172adcd3b8d33aaf155273de6",
@@ -181,6 +181,18 @@
 				},
 				{
 					"name": "post signup user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea16b8cf-651c-4498-a9b8-4701f15a7b34",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -193,7 +205,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"jonas\",\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": \"password1234\",\n\t\"passwordConfirm\": \"password1234\"\n}"
+							"raw": "{\n\t\"name\": \"jonas\",\n\t\"email\": \"hello@jonas.io\",\n\t\"password\": {{pwd}},\n\t\"passwordConfirm\": {{pwd}}\n}"
 						},
 						"url": {
 							"raw": "{{na_url}}users/signup",
@@ -521,12 +533,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{na_url}}tours/5d558ba9847f30105496eaef",
+							"raw": "{{na_url}}tours/5c88fa8cf4afda39709c2955",
 							"host": [
 								"{{na_url}}tours"
 							],
 							"path": [
-								"5d558ba9847f30105496eaef"
+								"5c88fa8cf4afda39709c2955"
 							]
 						}
 					},
@@ -647,6 +659,99 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "get reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}reviews",
+							"host": [
+								"{{na_url}}reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}reviews",
+							"host": [
+								"{{na_url}}reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create review nested",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 5,\n\t\"review\": \"Best tour in the world!\"\n}"
+						},
+						"url": {
+							"raw": "{{na_url}}tours/5c88fa8cf4afda39709c2955/reviews",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"5c88fa8cf4afda39709c2955",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -673,13 +778,13 @@
 	],
 	"variable": [
 		{
-			"id": "d7010552-2547-45aa-8a7d-a4d2ea732acb",
+			"id": "df0db497-1ad3-43fc-bffe-15f705b6980d",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "e7007656-ad46-4f51-8b3d-9442f4953c69",
+			"id": "6de8b41f-d9fb-47fa-88a2-02736e690c8b",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
