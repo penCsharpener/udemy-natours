@@ -30,7 +30,7 @@ const importData = async () => {
     console.log(`${tours.length} tours found in file to import.`);
     await Tour.create(tours);
 
-    to import users comment out the two pre save middlewares in userModel.js
+    //to import users comment out the two pre save middlewares in userModel.js
     const userDataPath = `${__dirname}/users.json`;
     const userData = await readFilePro(userDataPath);
     const users = JSON.parse(userData);

@@ -83,6 +83,7 @@ exports.getAll = Model =>
     res.status(200).json({
       status: 'success',
       results: docs.length,
+      // explain: await features.query.explain(),
       data: {
         data: docs
       }
