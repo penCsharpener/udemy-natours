@@ -642,7 +642,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{na_url}}tours?",
+							"raw": "{{na_url}}tours?price[lt]=1500",
 							"host": [
 								"{{na_url}}tours"
 							],
@@ -654,8 +654,7 @@
 								},
 								{
 									"key": "price[lt]",
-									"value": "1500",
-									"disabled": true
+									"value": "1500"
 								},
 								{
 									"key": "duration[gte]",
@@ -682,6 +681,54 @@
 									"value": "4",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tours within radius",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}tours/tours-within/400/center/34.111745,-118.113491/unit/mi",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"tours-within",
+								"400",
+								"center",
+								"34.111745,-118.113491",
+								"unit",
+								"mi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get tours distance",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{na_url}}tours/distances/34.111745,-118.113491/unit/km",
+							"host": [
+								"{{na_url}}tours"
+							],
+							"path": [
+								"distances",
+								"34.111745,-118.113491",
+								"unit",
+								"km"
 							]
 						}
 					},
@@ -1020,13 +1067,13 @@
 	],
 	"variable": [
 		{
-			"id": "c7b55f65-4cc4-47e9-b3fa-0a07127cb2e6",
+			"id": "4b671727-0676-4b64-8059-e9b86292c0cc",
 			"key": "na_url",
 			"value": "http://localhost:8000/api/v1/",
 			"type": "string"
 		},
 		{
-			"id": "692f8705-8060-404c-837a-6232ad5f2c1a",
+			"id": "06d675d5-f256-4d7d-9747-33c64498873c",
 			"key": "natours_jwt",
 			"value": "",
 			"type": "string"
