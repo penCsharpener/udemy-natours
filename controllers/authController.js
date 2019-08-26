@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+// const cookieParser = require('cookie-parser');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
@@ -116,6 +117,33 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // grant access to protected route
   req.user = freshUser;
+  next();
+});
+
+// only for rendered pages - no error
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  // 1) Getting token and check if it's there
+  if (req.cookies.jwt) {
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+
+    // 2) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next();
+    }
+
+    // 3) check if user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+
+    // there is a logged in user
+    res.locals.user = currentUser;
+    return next();
+  }
   next();
 });
 
