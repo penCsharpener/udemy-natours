@@ -19,6 +19,7 @@
   "homepage": "https://github.com/penCsharpener/udemy-natours#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "express": "^4.17.1",
