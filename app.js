@@ -42,6 +42,8 @@ app.use('/api', limiter);
 
 // body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+// needed to read data send from an html form
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 // data sanitization against NoSQL query injection
