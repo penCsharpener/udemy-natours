@@ -34,9 +34,12 @@ if (userDataForm) {
   userDataForm.addEventListener('submit', async e => {
     // prevents the form to be submitted the html way with button click
     e.preventDefault();
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-    await updateSettings({ name, email }, 'data');
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+
+    await updateSettings(form, 'data');
   });
 }
 
